@@ -1,2 +1,5 @@
 /src/main/FeeReports/
 /src/main/KcseReports/
+/nbproject/private/
+/build/
+/dist/
