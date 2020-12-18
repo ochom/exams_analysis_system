@@ -15,6 +15,10 @@ public class ConnClass {
 
     private final static boolean DEBUG = false;
     
+    public static String API_END = DEBUG?
+            "http://localhost:8000/accounts/":
+            "https://acme-accounts.herokuapp.com/accounts/";
+    
     public static Connection connectDB() {
         try {
             url = DEBUG? 

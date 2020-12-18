@@ -304,7 +304,7 @@ public class SchoolFrm extends javax.swing.JFrame {
             new ConfigFileClass().setTrialEnded();
         }
         try{
-            sql = "Update tblSchool SET School_name=?,School_posta=?,School_motto=?,school_logo=?,Principal_name=?,Principal_signature=?,Full_Purchase=? ";
+            sql = "Update tblSchool SET School_name=?,School_posta=?,School_motto=?,school_logo=?,Principal_name=?,Principal_signature=?,Full_Purchase=?";
                 pst = Conn.prepareStatement(sql);
                 pst.setString(1, txtSchoolName.getText());
                 pst.setString(2, txtPostalAddress.getText());
@@ -312,6 +312,7 @@ public class SchoolFrm extends javax.swing.JFrame {
                 pst.setString(4, Logo);
                 pst.setString(5, comboPrincipal.getSelectedItem().toString());
                 pst.setString(6, Sign);
+                pst.setString(7, "0");
                 pst.executeUpdate();
                 JOptionPane.showMessageDialog(null, "School details updated succesfully");  
             }
