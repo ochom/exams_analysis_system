@@ -3,20 +3,14 @@ package com.lysofts;
 import com.lysofts.utils.ConnClass;
 import com.jtattoo.plaf.DecorationHelper;
 import com.lysofts.utils.API;
-import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.sql.*;
-import java.util.List;
-import java.util.ArrayList;
 import javax.swing.*;
 
 public class RegisterFrm extends javax.swing.JFrame {
-
-    Connection Conn = ConnClass.connectDB();
     PreparedStatement pst = null;
     ResultSet rs = null;
     String sql = null, schoolName, email, username, phone, password;
-    List<String> users;
 
     public RegisterFrm() {
         initComponents();
@@ -25,6 +19,24 @@ public class RegisterFrm extends javax.swing.JFrame {
 
     private boolean isEmpty(String string) {
         return string == null || string.length() == 0;
+    }
+    
+    private void updateSchoolDetails(){
+        Connection conn = ConnClass.connectDB();
+        sql = "UPDATE tblschool set School_name=?";
+        try{
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, schoolName);
+            pst.executeUpdate();
+        }catch(SQLException ex){
+            ConnClass.printError(ex);
+        }finally{
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                ConnClass.printError(ex);
+            }
+        }
     }
 
     private void register() {
@@ -37,6 +49,7 @@ public class RegisterFrm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "All fields are required", "Required", JOptionPane.INFORMATION_MESSAGE);
         } else {
             if (API.register(schoolName, username, email, phone, password)) {
+                updateSchoolDetails();
                 this.dispose();
                 new LoginFrm().setVisible(true);
                 JOptionPane.showMessageDialog(this, "Registration successful");
