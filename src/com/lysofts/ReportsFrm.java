@@ -79,28 +79,9 @@ public class ReportsFrm extends javax.swing.JFrame {
             }
             catch(SQLException e){
                 JOptionPane.showMessageDialog(null,"System Err : "+e,"Error",0);
-        } 
-	CreateTrialBG();	
+        } 	
     }
-    
-    private void CreateTrialBG(){
-//        if(new File("C:\\Acme\\Exam System\\verbg.png").exists()){
-//            new File("C:\\Acme\\Exam System\\verbg.png").delete();
-//        }
-//        try{
-//            InputStream inputStream  = getClass().getClassLoader().getResourceAsStream("images\\verbg.png");
-//            FileOutputStream fos = new FileOutputStream("C:\\Acme\\Exam System\\verbg.png");
-//            byte[] buffer = new byte[inputStream.available()];
-//            inputStream.read(buffer);
-//            fos.write(buffer);
-//
-//            fos.flush();
-//            fos.close();
-//            System.out.println("Background image created");
-//        }catch(Exception e){
-//            System.out.println(e);
-//        }
-    }
+ 
     
     private void showReport(HashMap params){
         try {
